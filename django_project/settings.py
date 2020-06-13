@@ -130,27 +130,31 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-STATIC_URL = '/static/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
-if os.getcwd() == '/app':
-    import dj_database_url
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
-    #Honor the 'X-forwarded-Proto' header for request.is_secure().
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+MEDIA_URL = '/images/'
 
-    #Allow all host headers
-    ALLOWED_HOSTS = ['*']
-    DEBUG = True
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
-    #Static asset configuration
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# if os.getcwd() == '/app':
+#     import dj_database_url
+#     db_from_env = dj_database_url.config(conn_max_age=500)
+#     DATABASES['default'].update(db_from_env)
+#     #Honor the 'X-forwarded-Proto' header for request.is_secure().
+#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+#     #Allow all host headers
+#     ALLOWED_HOSTS = ['*']
+#     DEBUG = True
+
+#     #Static asset configuration
+#     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
